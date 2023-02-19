@@ -16,9 +16,9 @@ public class YearlyTask extends Task {
 
     @Override
     public String toString() {
-        return  "Yearly task. ID = " + id + ". Title: " + getTitle() +
+        return  "Per year task. Id: " + id + ". Title: " + getTitle() +
                 "\n Description: " + getDescription() +
                 "\n Date: " + getDateTime().getDayOfMonth() + " " + getDateTime().getMonth() +
-                "\n Type of task: " + getType().getType() + "\n--------------------";
+                "\n Type: " + getType().getType() ;
     }
 }

@@ -19,9 +19,9 @@ public class OneTimeTask extends Task {
 
     @Override
     public String toString() {
-        return "Onetime task. ID = " + id + ". Title: " +  getTitle() +
+        return "Onetime task. Id; " + id + ". Title: " +  getTitle() +
                 "\n Description: " + getDescription() +
                 "\n Date: " + getDateTime().getDayOfMonth() + " " + getDateTime().getMonth() + " " + getDateTime().getYear() +
-                "\n Type of task: " + getType().getType() + "\n--------------------";
+                "\n Type: " + getType().getType();
     }
 }

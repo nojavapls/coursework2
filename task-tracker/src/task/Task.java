@@ -9,7 +9,7 @@ public abstract class Task {
 
     private String title;
     private Type type;
-    private static int counter = 0;
+    private static int getIdGenerator = 0;
     private LocalDate dateTime;
     private String description;
     private Integer id;
@@ -19,8 +19,8 @@ public abstract class Task {
         this.type = type;
         this.dateTime = dateTime;
         this.description = description;
-        this.id = counter;
-        counter++;
+        idGenerator += 1;
+        this.id = idGenerator;
     }
 
     public Type getType() {

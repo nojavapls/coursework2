@@ -16,9 +16,9 @@ public class MonthlyTask extends Task{
 
     @Override
     public String toString() {
-        return  "Monthly task. ID = "  + id + ". Title: " + getTitle() +
+        return  "Per month task. Id: "  + id + "; Title: " + getTitle() +
                 "\n Description: " + getDescription() +
                 "\n Date: " + getDateTime().getDayOfMonth() + " " + getDateTime().getMonth() +
-                "\n Type of task: " + getType().getType() + "\n--------------------";
+                "\n Type: " + getType().getType();
     }
 }

@@ -17,8 +17,8 @@ public class DailyTask extends Task {
 
     @Override
     public String toString() {
-        return  ("Daily task. ID = "  + id + ". Title: "+ getTitle() +
+        return  ("Everyday task. Id: "  + id + ". Title: "+ getTitle() +
                 "\n Description: " + getDescription() +
-                "\n Type of task: " + getType());
+                "\n Type: " + getType());
     }
 }

@@ -16,9 +16,9 @@ public class WeeklyTask extends Task{
 
     @Override
     public String toString() {
-        return  "Weekly task. ID = " + id + ". Title: " + getTitle() +
+        return  "Per week task. Id: " + id + ". Title: " + getTitle() +
                 "\n Description: " + getDescription() +
                 "\n Date: every " + getDateTime().getDayOfWeek() +
-                "\n Type of task: " + getType().getType() + "\n--------------------";
+                "\n Type: " + getType().getType();
     }
 }

@@ -3,6 +3,7 @@ import task.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -12,11 +13,16 @@ import java.util.stream.Collectors;
 public class TaskTracker {
     public static final String DATE_FORMAT = "dd.MM.yyyy";
     private final static HashMap<Integer, Task> taskMap = new HashMap<>();
+    private final static HashMap<Integer, Task> deletedTaskMap = new HashMap<>();
+
     public static HashMap<Integer, Task> getTaskMap() {return taskMap;}
+    public static HashMap<Integer, Task> getDeletedTaskMap() {return deletedTaskMap;}
+
 
     public static void add(Task task){
         getTaskMap().put(task.getId(), task);
     }
+
     public static LocalDate inputDate() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter date to check tasks (format: dd.MM.yyyy):");
@@ -27,6 +33,11 @@ public class TaskTracker {
     public static Collection<Task> getAllByDate(HashMap<Integer, Task> taskMap, LocalDate taskDate) {
         Stream<Task> str = taskMap.values().stream();
         return str.filter(s -> s.appearsIn(taskDate, s.getDateTime())).collect(Collectors.toList());
+    }
+
+    public static void getDeleted() {
+        System.out.println(Arrays.toString(deletedTaskMap.entrySet().toArray()));
+
     }
     public static void inputTask() {
         Type taskType;
@@ -63,4 +74,15 @@ public class TaskTracker {
         }
         System.out.println("Task added!");
     }
+
+    public static void removeTaskId() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter task ID to delete: ");
+        Integer id = scanner.nextInt();
+        Task removedTask = getTaskMap().get(id);
+        deletedTaskMap.put(removedTask.getId(), removedTask);
+        getTaskMap().remove(id);
+        System.out.println("Task id " + id + "moved to Deleted List.");
+    }
+
 }

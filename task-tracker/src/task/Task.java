@@ -1,35 +1,43 @@
+package task;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+public abstract class Task {
 
-public class Task {
-
-    private static int idGenerator = 0;
+    public static int idGenerator;
 
     private String title;
     private Type type;
-    private int id;
-    private LocalDateTime dateTime;
+    private static int counter = 0;
+    private LocalDate dateTime;
     private String description;
+    private Integer id;
 
-    public Task(String title, Type type, int id, LocalDateTime dateTime, String description) {
+    public Task(String title, Type type, LocalDate dateTime, String description) {
         this.title = title;
         this.type = type;
-        this.id = id;
         this.dateTime = dateTime;
         this.description = description;
+        this.id = counter;
+        counter++;
     }
 
     public Type getType() {
         return type;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public int getId() {
         return id;
     }
 
-    //разобрать что еще за тайттл
-    public void setTitle(Type type) {
-        this.type = type;
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
@@ -45,18 +53,21 @@ public class Task {
         return Objects.hash(title, type, id, dateTime, description);
     }
 
-    //разобрать что еще за тайттл
     public String getTitle() {
-        return description;
+        return title;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public LocalDateTime getDateTime() {
+    public LocalDate getDateTime() {
         return dateTime;
     }
+
+
+    public abstract boolean appearsIn(LocalDate inputDate, LocalDate dateTime);
+
 
     @Override
     public String toString() {
@@ -69,3 +80,4 @@ public class Task {
                 '}';
     }
 }
+

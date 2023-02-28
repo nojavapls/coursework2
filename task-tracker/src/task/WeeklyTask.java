@@ -1,10 +1,12 @@
 package task;
 
+import exceptions.IncorrectArgumentException;
+
 import java.time.LocalDate;
 
 public class WeeklyTask extends Task{
     private final Integer id;
-    public WeeklyTask(String title, Type type, LocalDate dateTime, String description) {
+    public WeeklyTask(String title, Type type, LocalDate dateTime, String description) throws IncorrectArgumentException {
         super(title, type, dateTime, description);
         this.id = idGenerator;
     }

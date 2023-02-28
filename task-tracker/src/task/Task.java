@@ -1,4 +1,6 @@
 package task;
+import exceptions.IncorrectArgumentException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,9 +16,12 @@ public abstract class Task {
     private String description;
     private Integer id;
 
-    public Task(String title, Type type, LocalDate dateTime, String description) {
+    public Task(String title, Type type, LocalDate dateTime, String description) throws IncorrectArgumentException {
         this.title = title;
-        this.type = type;
+        if (type.equals(Type.WORK) || type.equals(Type.PERSONAL))
+            this.type = type;
+        else
+            throw new IncorrectArgumentException("Incorrect type: must be WORK or PERSONAL");
         this.dateTime = dateTime;
         this.description = description;
         idGenerator += 1;

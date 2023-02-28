@@ -1,20 +1,22 @@
 
 import TaskTracker.TaskTracker;
+import exceptions.IncorrectArgumentException;
 import task.Task;
 import java.util.*;
 
 import static TaskTracker.TaskTracker.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IncorrectArgumentException {
 
         System.out.printf("This is Task Program!\nFirst, add some tasks to the TaskTracker App:");
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             TaskTracker.inputTask();
         }
         //c++ style lol
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Task Tracker Options\n 1.Add task\n2.Delete task\n3.Check date for tasks\n4.Get list of deleted tasks\nEnter option number");
+        while (true) {
+            System.out.println("Task Tracker Options\n 1.Add task\n2.Delete task\n3.Check date for tasks\n4.Get list of deleted tasks\nEnter option number");
             switch (scanner.nextInt()) {
 
                 case 1:
@@ -33,4 +35,5 @@ public class Main {
                     System.out.println("Incorrect option number. Enter within range 1-4.");
             }
         }
+    }
 }

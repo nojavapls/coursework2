@@ -34,7 +34,7 @@ public class TaskTracker {
     // much helb here https://www.reddit.com/r/javahelp/comments/5r292t/cant_use_collecttolist_with_streams/
     public static Collection<Task> getAllByDate(HashMap<Integer, Task> taskMap, LocalDate taskDate) {
         Stream<Task> str = taskMap.values().stream();
-        return str.filter(s -> s.appearsIn(taskDate, s.getDateTime())).collect(Collectors.toList());
+        return str.filter(s -> s.appearsIn(s.getDateTime())).collect(Collectors.toList());
     }
 
     public static void getDeleted() {

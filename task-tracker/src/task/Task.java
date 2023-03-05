@@ -71,7 +71,7 @@ public abstract class Task {
     }
 
 
-    public abstract boolean appearsIn(LocalDate inputDate, LocalDate dateTime);
+    public abstract boolean appearsIn(LocalDate dateTime);
 
 
     @Override

@@ -1,4 +1,6 @@
 package TaskTracker;
+import exceptions.IncorrectArgumentException;
+import exceptions.TaskNotFoundException;
 import task.*;
 
 import java.time.LocalDate;
@@ -32,18 +34,18 @@ public class TaskTracker {
     // much helb here https://www.reddit.com/r/javahelp/comments/5r292t/cant_use_collecttolist_with_streams/
     public static Collection<Task> getAllByDate(HashMap<Integer, Task> taskMap, LocalDate taskDate) {
         Stream<Task> str = taskMap.values().stream();
-        return str.filter(s -> s.appearsIn(taskDate, s.getDateTime())).collect(Collectors.toList());
+        return str.filter(s -> s.appearsIn(s.getDateTime())).collect(Collectors.toList());
     }
 
     public static void getDeleted() {
         System.out.println(Arrays.toString(deletedTaskMap.entrySet().toArray()));
 
     }
-    public static void inputTask() {
+    public static void inputTask() throws IncorrectArgumentException {
         Type taskType;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("TYPE: enter number 1 or 2:\n1.WORK TASK;\n2.PERSONAL TASK");
-        taskType = (scanner.nextInt() == 1 ? Type.WORK : Type.PERSONAL);
+        System.out.println("TYPE: enter type in capital:\n1.WORK;\n2.PERSONAL");
+        taskType = (scanner.nextLine().equals("WORK") ? Type.WORK : Type.PERSONAL);
 
         System.out.print("dd.MM.yyyy date for task:");
         LocalDate dateTime = LocalDate.parse(scanner.next(), DateTimeFormatter.ofPattern(DATE_FORMAT));
@@ -79,10 +81,17 @@ public class TaskTracker {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter task ID to delete: ");
         Integer id = scanner.nextInt();
-        Task removedTask = getTaskMap().get(id);
-        deletedTaskMap.put(removedTask.getId(), removedTask);
-        getTaskMap().remove(id);
-        System.out.println("Task id " + id + "moved to Deleted List.");
+        Task removedTask;
+        try {
+            removedTask = getTaskMap().get(id);
+            deletedTaskMap.put(removedTask.getId(), removedTask);
+            getTaskMap().remove(id);
+            System.out.println("Task id " + id + "moved to Deleted List.");
+        }
+            catch (TaskNotFoundException e) {
+                System.out.println("Task id is absent");
+            }
+
     }
 
 }

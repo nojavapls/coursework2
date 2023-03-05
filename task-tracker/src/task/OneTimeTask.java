@@ -1,18 +1,20 @@
 package task;
 
+import exceptions.IncorrectArgumentException;
+
 import java.time.*;
 import java.util.Objects;
 
 public class OneTimeTask extends Task {
 
     private final Integer id;
-    public OneTimeTask(String title, Type type, LocalDate dateTime, String description) {
+    public OneTimeTask(String title, Type type, LocalDate dateTime, String description) throws IncorrectArgumentException {
         super(title, type, dateTime, description);
         this.id = idGenerator;
     }
 
     @Override
-    public boolean appearsIn(LocalDate inputDate, LocalDate dateTime) {
+    public boolean appearsIn(LocalDate dateTime) {
 
         return Objects.equals(getDateTime(), dateTime);
     }
